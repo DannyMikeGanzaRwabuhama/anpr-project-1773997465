@@ -9,6 +9,8 @@
 
 A complete, stage-by-stage Automatic Number Plate Recognition extraction pipeline based strictly on classical computer vision methods and Tesseract OCR. This project follows a robust six-stage pipeline perfectly suited for real-world deployments such as Rwandan vehicle plate extraction, parking systems, and toll booths.
 
+**Note on Testing Screenshots:** Due to the lack of available live traffic and stationary cars in the developmental environment, we were unable to capture real-world pipeline execution screenshots on actual plates. The testing phase supports live cameras or pre-recorded videos to validate extraction manually.
+
 </div>
 
 ---
@@ -19,33 +21,18 @@ The project relies on geometric properties and strict OCR validation mechanisms 
 
 ### 1️⃣ Detection (`src/detect.py`)
 Finds image regions that possess the geometric structure of a plate (rectangular, dense contours, known aspect ratio bounds).
-<div align="center">
-  <img src="screenshots/detect.jpg" width="45%" alt="Detection Stage" />
-</div>
 
 ### 2️⃣ Alignment (`src/align.py`)
 After identifying candidates, we apply perspective warping to transform the quadrangle contours into a flattened, level rectangle, minimizing rotational skew for OCR.
-<div align="center">
-  <img src="screenshots/align.jpg" width="45%" alt="Alignment Stage" />
-</div>
 
 ### 3️⃣ OCR Extraction (`src/ocr.py`)
 Uses PyTesseract with explicit whitelists (`psm 8`, `oem 3`, uppercase alphanumeric boundaries) to read characters directly off the flattened candidate.
-<div align="center">
-  <img src="screenshots/ocr.jpg" width="45%" alt="OCR Stage" />
-</div>
 
 ### 4️⃣ Regex Validation (`src/validate.py`)
 Tests OCR output strings against known plate patterns. Designed effectively for African layout models like standard Rwandan sequences: `[A-Z]{3}[0-9]{3}[A-Z]`.
-<div align="center">
-  <img src="screenshots/validate.jpg" width="45%" alt="Validation Stage" />
-</div>
 
 ### 5️⃣ Temporal Confirmation & CSV Save (`src/temporal.py`)
 Reads a live buffer across multiple frames to suppress "OCR flicker." It performs majority voting to confirm a plate number continuously over time. Finally, the confirmed string is logged efficiently inside `data/plates.csv`.
-<div align="center">
-  <img src="screenshots/temporal.jpg" width="45%" alt="Temporal Stage" />
-</div>
 
 ---
 
