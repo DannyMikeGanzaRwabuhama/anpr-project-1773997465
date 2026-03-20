@@ -31,7 +31,7 @@ This repository implements an Automatic Number Plate Recognition (ANPR) pipeline
    ```bash
    pip install -r requirements.txt
    ```
-2. Run any of the pipeline scripts to view the stage outputs sequentially:
+2. Run any of the pipeline scripts to view the stage outputs sequentially. By default, it uses live camera `0`, but you can pass a path to a pre-recorded video:
    ```bash
-   python src/temporal.py
+   python src/temporal.py [optional_video_path.mp4]
    ```

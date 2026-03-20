@@ -89,7 +89,13 @@ def read_plate_text(plate_img):
 
 
 def main():
-    cap = cv2.VideoCapture(0)
+import sys
+    source = sys.argv[1] if len(sys.argv) > 1 else 0
+    try:
+        source = int(source)
+    except ValueError:
+        pass
+    cap = cv2.VideoCapture(source)
 
     if not cap.isOpened():
         raise RuntimeError("Camera not opened")
