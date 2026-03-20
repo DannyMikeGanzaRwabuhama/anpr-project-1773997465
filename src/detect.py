@@ -33,7 +33,7 @@ def find_plate_candidates(frame):
 
 
 def main():
-import sys
+    import sys
     source = sys.argv[1] if len(sys.argv) > 1 else 0
     try:
         source = int(source)

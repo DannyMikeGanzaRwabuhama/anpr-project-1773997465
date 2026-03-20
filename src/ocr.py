@@ -89,7 +89,7 @@ def read_plate_text(plate_img):
 
 
 def main():
-import sys
+    import sys
     source = sys.argv[1] if len(sys.argv) > 1 else 0
     try:
         source = int(source)
